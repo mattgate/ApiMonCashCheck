@@ -1,10 +1,8 @@
 package com.devMattgate.ApiMonCashCheck.entities;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -24,5 +22,9 @@ public class Account {
     private String accountName;
     private Date dateCreate;
     private Double totalAmount;
-    private Long userAppId;
+
+    @ManyToOne
+    @JoinColumn(name = "userAppId")
+    @JsonIgnore
+    private UserApp userApp;
 }
