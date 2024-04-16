@@ -37,8 +37,6 @@ public class AccountController {
     public void saveAccount(@RequestBody AccountDTO accountDTO){
         accountService.save(Account.builder()
                 .accountName(accountDTO.getAccountName())
-                .totalAmount(accountDTO.getTotalAmount())
-                .dateCreate(accountDTO.getDateCreate())
                 .userApp(accountDTO.getUserApp()).build()
         );
     }
@@ -79,9 +77,6 @@ public class AccountController {
         if (accountOptional.isPresent()){
             Account account = accountOptional.get();
             account.setAccountName(accountDTO.getAccountName());
-            account.setDateCreate(accountDTO.getDateCreate());
-            account.setTotalAmount(accountDTO.getTotalAmount());
-            account.setUserApp(accountDTO.getUserApp());
 
             accountService.save(account);
 

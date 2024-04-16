@@ -21,10 +21,18 @@ public class Account {
     private Long id;
     private String accountName;
     private Date dateCreate;
+
+    @Column(columnDefinition = "DOUBLE DEFAULT 0.0")
     private Double totalAmount;
 
     @ManyToOne
     @JoinColumn(name = "userAppId")
     @JsonIgnore
     private UserApp userApp;
+
+
+    @PrePersist
+    protected void onCreate() {
+        dateCreate = new Date();
+    }
 }
